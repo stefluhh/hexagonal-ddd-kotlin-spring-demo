@@ -7,4 +7,4 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  * Spring Boot 3 ships a RFC 7807 compliant application/problem+json implementation
  */
 @ControllerAdvice
-class SearchExceptionHandler : ResponseEntityExceptionHandler()
+class ControllerAdvice : ResponseEntityExceptionHandler()
