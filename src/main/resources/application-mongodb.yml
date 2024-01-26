@@ -1,0 +1,5 @@
+# Application yaml activated upon Spring profile "mongodb" activation.
+spring:
+  data:
+    mongodb:
+      uri: mongodb://spring:mongo@localhost:27017/book

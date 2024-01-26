@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "5cfa5a20-2731-465e-9e33-30f057df52b5",
+		"name": "Book API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24022729"
+	},
+	"item": [
+		{
+			"name": "Search",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books/search?search_term=Domain-Driven Design",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"search"
+					],
+					"query": [
+						{
+							"key": "search_term",
+							"value": "Domain-Driven Design"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrow a book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books/borrow?book_id=1&borrower_name=Stefano",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"borrow"
+					],
+					"query": [
+						{
+							"key": "book_id",
+							"value": "1"
+						},
+						{
+							"key": "borrower_name",
+							"value": "Stefano"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Return a book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books/return?book_id=1&book_condition=UNUSABLE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"return"
+					],
+					"query": [
+						{
+							"key": "book_id",
+							"value": "1"
+						},
+						{
+							"key": "book_condition",
+							"value": "UNUSABLE"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

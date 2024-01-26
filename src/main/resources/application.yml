@@ -1,0 +1,9 @@
+logging:
+  level:
+    root: INFO
+
+server:
+  port: 8080
+
+api:
+  base-path: /books # All endpoints are prefixed with this path

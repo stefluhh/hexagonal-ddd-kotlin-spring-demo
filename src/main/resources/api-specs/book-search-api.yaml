@@ -1,0 +1,157 @@
+openapi: "3.0.2"
+info:
+  title: Search API to find books
+  version: "1.0"
+servers:
+  - url: http://localhost:8080/books
+paths:
+  /borrow:
+    post:
+      tags:
+        - books
+      summary: Borrow a book
+      operationId: borrowBook
+      parameters:
+        - $ref: '#/components/parameters/query.BookId'
+        - $ref: '#/components/parameters/query.BorrowerName'
+      responses:
+        '200':
+          description: Book successfully borrowed.
+  /return:
+    post:
+      tags:
+        - books
+      summary: Return a book
+      operationId: returnBook
+      parameters:
+        - $ref: '#/components/parameters/query.BookId'
+        - $ref: '#/components/parameters/query.BookCondition'
+      responses:
+        '200':
+          description: Book successfully returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookReturnResponse'
+  /search:
+    post:
+      tags:
+        - books
+      summary: Find books in a library
+      operationId: searchBooks
+      parameters:
+        - $ref: '#/components/parameters/query.SearchTerm'
+      responses:
+        '200':
+          description: A valid search. Empty array in case no books found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+
+components:
+
+  schemas:
+
+    BookReturnResponse:
+      type: object
+      description: Response body of a book return.
+      required:
+        - customer_message
+      properties:
+        customer_message:
+          type: string
+          description: Message to be shown to the customer.
+        penalty:
+          type: number
+          description: Amount of penalty to be paid by the customer, if any.
+
+    SearchResult:
+      type: object
+      description: Response body of a search.
+      required:
+        - hit_count
+        - hits
+      properties:
+        hit_count:
+          type: integer
+          format: int32
+          description: Amount of search hits.
+          example: 2
+          minimum: 0
+        hits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Book'
+
+    Book:
+      type: object
+      description: Attributes describing a book.
+      required:
+        - id
+        - title
+        - author
+        - page_count
+      properties:
+        id:
+          type: string
+          description: Internal system Id.
+        title:
+          type: string
+          example: Implementing Domain-Driven Design
+        author:
+          type: string
+          example: Vaughn Vernon
+        page_count:
+          type: integer
+          format: int32
+          minimum: 0
+          example: 656
+
+  parameters:
+    query.BookId:
+      in: query
+      required: true
+      allowEmptyValue: false
+      style: form
+      explode: false
+      name: book_id
+      schema:
+        type: string
+
+    query.BorrowerName:
+      in: query
+      required: true
+      allowEmptyValue: false
+      style: form
+      explode: false
+      name: borrower_name
+      schema:
+          type: string
+
+    query.BookCondition:
+      in: query
+      required: true
+      allowEmptyValue: false
+      style: form
+      explode: false
+      name: book_condition
+      schema:
+        type: string
+        x-extensible-enum:
+          - AS_NEW
+          - GOOD
+          - FAIR
+          - POOR
+          - UNUSABLE
+
+    query.SearchTerm:
+      in: query
+      description: Search term to search for. Can be any string. Title and author fields are inspected for search.
+      required: true
+      allowEmptyValue: false
+      style: form
+      explode: false
+      name: search_term
+      schema:
+        type: string

@@ -671,3 +671,4 @@ services/website/src/gql/generated
 rename.sh
 services/middleware/middleware-infra/src/main/resources/graphql
 GraphQLDTOs.kt
+dockersetup/data/
