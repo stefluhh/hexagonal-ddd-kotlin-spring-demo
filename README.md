@@ -32,7 +32,7 @@ Examples for infrastructure concerns could be:
 The concepts of hexagonal create a project setup that decouples businesslogic from infrastructure very effectively. This adds a couple of 
 advantages to your codebase:
 
-* Infrastructure changes or upgrades cause less friction, as your business logic is not directly coupled to them anymore
+* Changes or upgrades in infrastructure cause less friction, as your business logic is not directly coupled to specific infrastructure implementations anymore
 * Infrastructure components are easily replaceable due to inversion of control
 * Changes in infrastructure, such as consumed REST APIs, do not cascade through the codebase by using the Anti Corruption Layer pattern
 * Business logic is testable as a standalone component without having to spin up a web application context
