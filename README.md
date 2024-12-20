@@ -50,7 +50,7 @@ Hexagonal hereby is basically just a toolset of ideas and methodologies, includi
 There are different ways to implement Hexagonal in a project. Choosing one mainly depends on the degree of web application framework flexibility you need on the one hand, and the
 amount of strictness you want to apply in order to comply with Hexagonal on the other hand.
 
-There are 2 example projects provided:
+There are 2 ways of implementation that we talk about in this article:
 
 * Single Module (Hexagonal)
 * Multi Module (Onion Architecture)
